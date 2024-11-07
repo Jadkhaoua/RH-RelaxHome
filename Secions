@@ -1,0 +1,256 @@
+document.addEventListener('DOMContentLoaded', () => {
+    // Create the structure of the page using JavaScript
+    const body = document.body;
+
+    // Create Header with Navigation
+    const header = document.createElement('header');
+    const nav = document.createElement('nav');
+    const ul = document.createElement('ul');
+
+    const sections = ['Front Page', 'About Us', 'Services', 'Calendar', 'Contact Us'];
+
+    sections.forEach(section => {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = `#${section.toLowerCase().replace(/\s+/g, '')}`;
+        a.textContent = section;
+        li.appendChild(a);
+        ul.appendChild(li);
+    });
+
+    nav.appendChild(ul);
+    header.appendChild(nav);
+    body.appendChild(header);
+
+    // Create Section Content
+    const createSection = (id, title, content) => {
+        const section = document.createElement('section');
+        section.id = id;
+        
+        const h2 = document.createElement('h2');
+        h2.textContent = title;
+        section.appendChild(h2);
+
+        const p = document.createElement('p');
+        p.textContent = content;
+        section.appendChild(p);
+
+        return section;
+    };
+
+    // Front Page Section
+    const frontPage = createSection('frontpage', 'Welcome to Our Website!', 'This is the front page of our website where we introduce our brand.');
+    body.appendChild(frontPage);
+
+    // About Us Section
+    const aboutUs = createSection('aboutus', 'About Us', 'We are a team of passionate professionals committed to providing quality services to our clients.');
+    body.appendChild(aboutUs);
+
+    // Services Section
+    const services = document.createElement('section');
+    services.id = 'services';
+    const servicesTitle = document.createElement('h2');
+    servicesTitle.textContent = 'Our Services';
+    services.appendChild(servicesTitle);
+    
+    const servicesList = document.createElement('ul');
+    const serviceItems = ['Web Design', 'SEO Optimization', 'Content Creation', 'Consulting'];
+    
+    serviceItems.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        servicesList.appendChild(li);
+    });
+
+    services.appendChild(servicesList);
+    body.appendChild(services);
+
+    // Calendar Section
+    const calendar = document.createElement('section');
+    calendar.id = 'calendar';
+    const calendarTitle = document.createElement('h2');
+    calendarTitle.textContent = 'Calendar';
+    calendar.appendChild(calendarTitle);
+
+    const calendarList = document.createElement('ul');
+    const calendarItems = [
+        'Event 1 - January 15, 2024',
+        'Event 2 - February 10, 2024',
+        'Event 3 - March 20, 2024'
+    ];
+    
+    calendarItems.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        calendarList.appendChild(li);
+    });
+
+    calendar.appendChild(calendarList);
+    body.appendChild(calendar);
+
+    // Contact Us Section with Form
+    const contactUs = document.createElement('section');
+    contactUs.id = 'contactus';
+    const contactTitle = document.createElement('h2');
+    contactTitle.textContent = 'Contact Us';
+    contactUs.appendChild(contactTitle);
+
+    const contactMessage = document.createElement('p');
+    contactMessage.textContent = 'If you have any questions, feel free to reach out to us!';
+    contactUs.appendChild(contactMessage);
+
+    const form = document.createElement('form');
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('Form Submitted!');
+    });
+
+    const nameLabel = document.createElement('label');
+    nameLabel.textContent = 'Name:';
+    const nameInput = document.createElement('input');
+    nameInput.type = 'text';
+    nameInput.id = 'name';
+    nameInput.name = 'name';
+    nameInput.required = true;
+    form.appendChild(nameLabel);
+    form.appendChild(nameInput);
+
+    const emailLabel = document.createElement('label');
+    emailLabel.textContent = 'Email:';
+    const emailInput = document.createElement('input');
+    emailInput.type = 'email';
+    emailInput.id = 'email';
+    emailInput.name = 'email';
+    emailInput.required = true;
+    form.appendChild(emailLabel);
+    form.appendChild(emailInput);
+
+    const messageLabel = document.createElement('label');
+    messageLabel.textContent = 'Message:';
+    const messageInput = document.createElement('textarea');
+    messageInput.id = 'message';
+    messageInput.name = 'message';
+    messageInput.required = true;
+    form.appendChild(messageLabel);
+    form.appendChild(messageInput);
+
+    const submitButton = document.createElement('button');
+    submitButton.type = 'submit';
+    submitButton.textContent = 'Submit';
+    form.appendChild(submitButton);
+
+    contactUs.appendChild(form);
+    body.appendChild(contactUs);
+
+    // Footer
+    const footer = document.createElement('footer');
+    footer.textContent = '© 2024 Website Example. All Rights Reserved.';
+    body.appendChild(footer);
+
+    // Apply CSS styles
+    const style = document.createElement('style');
+    style.textContent = `
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        header nav ul {
+            list-style: none;
+        }
+
+        header nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        header nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        header nav ul li a:hover {
+            color: #f4f4f4;
+        }
+
+        section {
+            padding: 20px;
+            margin: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        section h2 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        section p, section ul {
+            color: #666;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        ul li {
+            margin-bottom: 8px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        form label {
+            margin-top: 10px;
+            color: #333;
+        }
+
+        form input, form textarea {
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        form button {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background-color: #555;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            margin-top: 30px;
+        }
+    `;
+    body.appendChild(style);
+});
